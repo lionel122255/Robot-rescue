@@ -21,7 +21,7 @@ int main(int argc, char *argv[]){
     struct location_t initial_pos ={1,1};
     struct location_t exit_pos = {map.width-2,map.height-2};
     enum resource_t player_res[NB_RESOURCES];
-    player_res[MOVE] = map.width +map.height ;
+    player_res[MOVE] = map.width  ;
     player_res[TIME] = TIMER;
     player_res[WATER] = map.width;
    
@@ -40,7 +40,7 @@ int main(int argc, char *argv[]){
     }
 
         // 1. Charger la musique
-   Mix_Music *musique = Mix_LoadMUS("../display/ChiptuneAdventure.mp3");
+   Mix_Music *musique = Mix_LoadMUS("./display/ChiptuneAdventure.mp3");
 
     if (musique == NULL) {
         fprintf(stderr, "Erreur chargement musique : %s\n", Mix_GetError());
@@ -98,7 +98,6 @@ int main(int argc, char *argv[]){
     Mix_FreeMusic(musique);
     Mix_CloseAudio();
     render_destroy(render);
-    SDL_Quit();
     free_game(game);
     
 

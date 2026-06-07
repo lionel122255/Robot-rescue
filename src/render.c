@@ -45,15 +45,15 @@ struct render_t *render_create(const char *title, int width, int height){
                         width,height,SDL_WINDOW_SHOWN);
 
     render->renderer = SDL_CreateRenderer(render->window ,-1 ,SDL_RENDERER_ACCELERATED);
-    render->exit = load_img_texture(render , "../display/star.png");
-    render->fire = load_img_texture(render , "../display/fire.png");
-    render->flower = load_img_texture(render , "../display/flower.png");
-    render->grass = load_img_texture(render , "../display/grass.png");
-    render->player = load_img_texture(render , "../display/player.png");
-    render->sand = load_img_texture(render , "../display/sand.png");
-    render ->wall = load_img_texture(render , "../display/wall.png");
+    render->exit = load_img_texture(render , "./display/star.png");
+    render->fire = load_img_texture(render , "./display/fire.png");
+    render->flower = load_img_texture(render , "./display/flower.png");
+    render->grass = load_img_texture(render , "./display/grass.png");
+    render->player = load_img_texture(render , "./display/player.png");
+    render->sand = load_img_texture(render , "./display/sand.png");
+    render ->wall = load_img_texture(render , "./display/wall.png");
     
-    render->font = TTF_OpenFont("../display/PixelOperator.ttf",24);
+    render->font = TTF_OpenFont("./display/PixelOperator.ttf",24);
 
     return render;
     
@@ -181,7 +181,7 @@ void render_game(struct render_t *render, struct game_t *game,int win){
     SDL_RenderPresent(render->renderer);
 }
 
-void render_destroy(struct render_t *render){
+void render_destroy(struct render_t *render) {
     SDL_DestroyTexture(render->exit);
     SDL_DestroyTexture(render->fire);
     SDL_DestroyTexture(render->flower);
@@ -189,11 +189,15 @@ void render_destroy(struct render_t *render){
     SDL_DestroyTexture(render->player);
     SDL_DestroyTexture(render->sand);
     SDL_DestroyTexture(render->wall);
+
     TTF_CloseFont(render->font);
 
     SDL_DestroyRenderer(render->renderer);
     SDL_DestroyWindow(render->window);
+
+    TTF_Quit();
+    IMG_Quit();
+    SDL_Quit();
+
     free(render);
-    
-    
 }

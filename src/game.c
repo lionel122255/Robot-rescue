@@ -101,6 +101,7 @@ static struct location_t location_based_on_dir(struct location_t loc, enum direc
         break;
 
     default:
+        return res;
         break;
     }
 }

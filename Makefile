@@ -22,6 +22,21 @@ OBJ = \
 	$(BUILD_DIR)/player.o \
 	$(BUILD_DIR)/render.o
 
+
+TEST_SRC = \
+	test/functions_test.c \
+	src/game.c \
+	src/map.c \
+	src/player.c
+
+TEST_TARGET = tests
+
+$(TEST_TARGET): $(TEST_SRC)
+	$(CC) $(CFLAGS) $(TEST_SRC) -o $(TEST_TARGET)
+
+test: $(TEST_TARGET)
+	./$(TEST_TARGET)
+
 all: $(TARGET)
 
 $(BUILD_DIR):
@@ -63,4 +78,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re level1 level2 level3 level4 level5 valgrind
+.PHONY: all clean fclean re level1 level2 level3 test

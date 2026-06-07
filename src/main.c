@@ -21,7 +21,7 @@ int main(int argc, char *argv[]){
     struct location_t initial_pos ={1,1};
     struct location_t exit_pos = {map.width-2,map.height-2};
     enum resource_t player_res[NB_RESOURCES];
-    player_res[MOVE] = map.width  ;
+    player_res[MOVE] = map.width + map.height ;
     player_res[TIME] = TIMER;
     player_res[WATER] = map.width;
    
@@ -87,12 +87,12 @@ int main(int argc, char *argv[]){
             }
         }
         render_game(render,game,player_win(game));
-        if(player_win(game) || game->player->resources[TIME] ==0 ){
+        if(player_win(game) || game->player->resources[TIME] ==0 || game->player->resources[MOVE] == 0){
             running=0;
             SDL_Delay(100);
         }
             
-        SDL_Delay(24);
+        SDL_Delay(16);
     }
 
     Mix_FreeMusic(musique);

@@ -20,7 +20,7 @@ void player_move(struct player_t  *  player , enum direction_t dir){
     switch (dir)
     {
     case NORTH:
-        player->player_pos.y += 1;
+        player->player_pos.y -= 1;
         break;
     
     case EAST:
@@ -28,7 +28,7 @@ void player_move(struct player_t  *  player , enum direction_t dir){
         break;
 
     case SOUTH:
-        player->player_pos.y -= 1;
+        player->player_pos.y += 1;
         break;
 
     case WEST:

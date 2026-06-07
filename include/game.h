@@ -22,6 +22,10 @@ void player_gain_resource(struct game_t *game, enum ground_t resource);
 
 void print_game(struct game_t *game);
 
+void move_player(struct game_t * game,enum direction_t dir);
+
+int player_win(struct game_t * game);
+
 
 
 

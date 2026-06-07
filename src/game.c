@@ -23,9 +23,17 @@ void player_gain_resource(struct game_t *game, enum ground_t resource) {
     if (resource == FLOWER) {
         game->player->resources[MOVE] += 2;
         game->map.grid[game->player->player_pos.y][game->player->player_pos.x] = GRASS;
-    } else if (resource == SAND) {
+    } 
+    
+    if (resource == SAND) {
         game->player->resources[WATER] += 2;
         game->map.grid[game->player->player_pos.y][game->player->player_pos.x] = GRASS;
+    }
+
+    if (resource == FIRE) {
+        if(game->player->resources[WATER] >=1)
+            game->player->resources[WATER] -= 1;
+        
     }
 
 }
@@ -65,4 +73,66 @@ void print_game(struct game_t *game) {
         }
         printf("\n");
     }
+}
+
+
+static struct location_t location_based_on_dir(struct location_t loc, enum direction_t dir){
+    struct location_t res = loc;
+    switch (dir)
+    {
+    case NORTH:
+        res.y-=1;
+        return res;
+        break;
+    
+    case EAST:
+        res.x+=1;
+        return res;
+        break;
+
+    case SOUTH:
+        res.y+=1;
+        return res;
+        break;
+
+    case WEST:
+        res.x-=1;
+        return res;
+        break;
+
+    default:
+        break;
+    }
+}
+
+void move_player(struct game_t * game,enum direction_t dir){
+    struct location_t new = location_based_on_dir(game->player->player_pos,dir);
+
+    if (new.x < 0 || new.x >= game->map.width)
+        return;
+
+    if (new.y < 0 || new.y >= game->map.height)
+        return;
+
+    if (game->map.grid[new.y][new.x] == WALL)
+        return;
+
+    if (game->map.grid[new.y][new.x] == FIRE && game->player->resources[WATER]<=0)
+        return;
+    
+    
+    player_move(game->player , dir);
+    player_gain_resource(game,game->map.grid[new.y][new.x]);
+    game->player->resources[MOVE] --;
+    
+        
+
+    return ;
+
+}
+
+
+int player_win(struct game_t * game){
+    return game->player->player_pos.x == game->exit_location.x &&
+            game->player->player_pos.y == game->exit_location.y;
 }

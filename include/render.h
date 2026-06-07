@@ -4,6 +4,8 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 #include "game.h"
 
@@ -26,7 +28,7 @@ struct render_t {
 
 struct render_t *render_create(const char *title, int width, int height);
 
-void render_game(struct render_t *render, struct game_t *game);
+void render_game(struct render_t *render, struct game_t *game,int win);
 
 void render_destroy(struct render_t *render);
 

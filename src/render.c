@@ -31,7 +31,7 @@ struct render_t *render_create(const char *title, int width, int height){
         exit (EXIT_FAILURE);
    }
 
-   if (!(IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG)) {
+   if (!(IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG) & (IMG_INIT_PNG | IMG_INIT_JPG))) {
         fprintf(stderr, "Erreur IMG_Init : %s\n", IMG_GetError());
         exit(EXIT_FAILURE);
     }
@@ -60,13 +60,13 @@ struct render_t *render_create(const char *title, int width, int height){
 
     
 
-    render->exit = load_img_texture(render , "./display/star.png");
+    render->exit = load_img_texture(render , "./display/door_opened.png");
     render->fire = load_img_texture(render , "./display/fire.png");
-    render->flower = load_img_texture(render , "./display/flower.png");
-    render->grass = load_img_texture(render , "./display/grass.png");
-    render->player = load_img_texture(render , "./display/player.png");
+    render->flower = load_img_texture(render , "./display/flowers.jpg");
+    render->grass = load_img_texture(render , "./display/grass.jpg");
+    render->player = load_img_texture(render , "./display/gardener_right.png");
     render->sand = load_img_texture(render , "./display/sand.png");
-    render ->wall = load_img_texture(render , "./display/wall.png");
+    render ->wall = load_img_texture(render , "./display/door_closed_plus.png");
     
     render->font = TTF_OpenFont("./display/PixelOperator.ttf",24);
 

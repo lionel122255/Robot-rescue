@@ -31,9 +31,10 @@ void player_gain_resource(struct game_t *game, enum ground_t resource) {
     }
 
     if (resource == FIRE) {
-        if(game->player->resources[WATER] >=1)
+        if(game->player->resources[WATER] >=1){
             game->player->resources[WATER] -= 1;
-        
+            game->map.grid[game->player->player_pos.y][game->player->player_pos.x] = GRASS;
+        }
     }
 
 }

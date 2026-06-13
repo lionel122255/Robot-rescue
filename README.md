@@ -3,7 +3,7 @@
 <h1>Robo Rescue</h1>
 
 <p align="center">
-  <img src="./display/Capture d&apos;écran 2026-06-07 204255.png" width="800">
+  <img src="./display/Capture d'écran 2026-06-13 174929.png" width="800">
 </p>
 
 

@@ -23,13 +23,13 @@ int main(int argc, char *argv[]){
     enum resource_t player_res[NB_RESOURCES];
     player_res[MOVE] = map.width + map.height ;
     player_res[TIME] = TIMER;
-    player_res[WATER] = map.width;
+    player_res[WATER] = 2;
    
     struct player_t * player  = init_player(initial_pos,player_res);
 
     struct game_t * game = game_create(map,player,exit_pos,initial_pos);
 
-    struct render_t * render = render_create("MOn jeu" , map.width * TILE_SIZE , 
+    struct render_t * render = render_create("Robo-rescue" , map.width * TILE_SIZE , 
                                 map.height*TILE_SIZE +WINDOW_EXTRA_HEIGHT);
 
     int running =1;
@@ -40,7 +40,7 @@ int main(int argc, char *argv[]){
     }
 
         // 1. Charger la musique
-   Mix_Music *musique = Mix_LoadMUS("./display/ChiptuneAdventure.mp3");
+   Mix_Music *musique = Mix_LoadMUS("./display/Can't Stop Winning MP3.mp3");
 
     if (musique == NULL) {
         fprintf(stderr, "Erreur chargement musique : %s\n", Mix_GetError());
